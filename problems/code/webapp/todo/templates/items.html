@@ -1,0 +1,22 @@
+<html>
+	<body>
+		<h1>TODO:</h1>
+		<ol>
+			{% for item in items %}
+				<li>
+					{{ item.text }}
+					<form method="POST" action="/delete" name="deleteItem{{ loop.index }}" style="display: inline;">
+						<input type="hidden" name="item_index" value="{{ loop.index-1 }}">
+						(<a href="#" onclick="document.deleteItem{{ loop.index }}.submit();return false;">del</a>)
+					</form>
+				</li>
+			{% endfor %}
+		</ol>
+		<hr>
+		<form method="POST" action="/create">
+			<p>Add a new list item:</p>
+			<input type="text" name="item_text">
+			<input type="submit" value="Create">
+		</form>
+	</body>
+</html>
